@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="@L.Lang">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - @L["App.Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+@{
+    var returnUrl = Context.Request.Path.Value + Context.Request.QueryString.Value;
+}
+<nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" asp-controller="Dishes" asp-action="Index">@L["App.Title"]</a>
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" asp-controller="Dishes" asp-action="Index">@L["Menu.Dishes"]</a></li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Categories" asp-action="Index">@L["Menu.Categories"]</a></li>
+        </ul>
+        <div class="btn-group btn-group-sm" role="group">
+            <a class="btn btn-outline-light @(L.Lang == "en" ? "active" : "")"
+               asp-controller="Language" asp-action="Set" asp-route-lang="en" asp-route-returnUrl="@returnUrl">English</a>
+            <a class="btn btn-outline-light @(L.Lang == "vi" ? "active" : "")"
+               asp-controller="Language" asp-action="Set" asp-route-lang="vi" asp-route-returnUrl="@returnUrl">Tiếng Việt</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container pb-5">
+    @if (TempData["Success"] is string okKey)
+    {
+        <div class="alert alert-success">@L[okKey]</div>
+    }
+    @if (TempData["Error"] is string errKey)
+    {
+        <div class="alert alert-danger">@L[errKey]</div>
+    }
+    @RenderBody()
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+@model Dish_BIT240009
+@{
+    var cats = (List<DishCategory_BIT240009>)ViewBag.Categories;
+}
+
+<input type="hidden" asp-for="Id" />
+
+<div class="mb-3">
+    <label asp-for="Name" class="form-label">@L["Dish.Name"]</label>
+    <input asp-for="Name" class="form-control" />
+    @Html.Err("Name")
+</div>
+
+<div class="mb-3">
+    <label asp-for="DishCategoryId" class="form-label">@L["Dish.Category"]</label>
+    <select asp-for="DishCategoryId" class="form-select">
+        <option value="0">@L["Form.SelectCategory"]</option>
+        @foreach (var c in cats)
+        {
+            <option value="@c.Id">@c.Name</option>
+        }
+    </select>
+    @Html.Err("DishCategoryId")
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="Price" class="form-label">@L["Dish.Price"]</label>
+        <input asp-for="Price" type="number" step="any" class="form-control" />
+        @Html.Err("Price")
+    </div>
+    <div class="col-md-6 mb-3">
+        <label asp-for="PreparationTime" class="form-label">@L["Dish.PrepTime"] (@L["Unit.Minutes"])</label>
+        <input asp-for="PreparationTime" type="number" class="form-control" />
+        @Html.Err("PreparationTime")
+    </div>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Description" class="form-label">@L["Dish.Description"]</label>
+    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+    @Html.Err("Description")
+</div>
+
+<div class="form-check mb-3">
+    <input asp-for="IsAvailable" class="form-check-input" />
+    <label asp-for="IsAvailable" class="form-check-label">@L["Dish.IsAvailable"]</label>
+</div>
+
+<button type="submit" class="btn btn-primary">@L["Btn.Save"]</button>
+<a class="btn btn-secondary" asp-action="Index">@L["Btn.Back"]</a>

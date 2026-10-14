@@ -1,0 +1,8 @@
+@model DishCategory_BIT240009
+@{
+    ViewData["Title"] = L["Cat.Edit"];
+}
+<h2>@L["Cat.Edit"]</h2>
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+    @await Html.PartialAsync("_Form", Model)
+</form>

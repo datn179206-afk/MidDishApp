@@ -1,0 +1,18 @@
+@model DishCategory_BIT240009
+
+<input type="hidden" asp-for="Id" />
+
+<div class="mb-3">
+    <label asp-for="Name" class="form-label">@L["Cat.Name"]</label>
+    <input asp-for="Name" class="form-control" />
+    @Html.Err("Name")
+</div>
+
+<div class="mb-3">
+    <label asp-for="Description" class="form-label">@L["Cat.Description"]</label>
+    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+    @Html.Err("Description")
+</div>
+
+<button type="submit" class="btn btn-primary">@L["Btn.Save"]</button>
+<a class="btn btn-secondary" asp-action="Index">@L["Btn.Back"]</a>

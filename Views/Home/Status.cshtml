@@ -1,0 +1,6 @@
+@{
+    string messageKey = ViewBag.MessageKey;
+    ViewData["Title"] = L[messageKey];
+}
+<div class="alert alert-warning">@ViewBag.Code - @L[messageKey]</div>
+<a class="btn btn-secondary" asp-controller="Dishes" asp-action="Index">@L["Btn.Back"]</a>

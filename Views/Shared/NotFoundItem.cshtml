@@ -1,0 +1,6 @@
+@{
+    ViewData["Title"] = L["Err.PageNotFound"];
+    string messageKey = ViewBag.MessageKey;
+}
+<div class="alert alert-warning">@L[messageKey]</div>
+<a class="btn btn-secondary" asp-controller="Dishes" asp-action="Index">@L["Btn.Back"]</a>

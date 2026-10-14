@@ -1,0 +1,38 @@
+@model List<DishCategory_BIT240009>
+@{
+    ViewData["Title"] = L["Cat.List"];
+    var confirmMsg = L["Confirm.Delete"];
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">@L["Cat.List"]</h2>
+    <a class="btn btn-primary" asp-action="Create">@L["Cat.Create"]</a>
+</div>
+
+<table class="table table-hover align-middle">
+    <thead>
+        <tr>
+            <th>@L["Cat.Name"]</th>
+            <th>@L["Cat.Description"]</th>
+            <th>@L["Cat.DishCount"]</th>
+            <th>@L["Col.Actions"]</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.Name</td>
+            <td>@c.Description</td>
+            <td>@c.Dishes.Count</td>
+            <td class="text-nowrap">
+                <a class="btn btn-sm btn-outline-warning" asp-action="Edit" asp-route-id="@c.Id">@L["Btn.Edit"]</a>
+                <form asp-action="Delete" asp-route-id="@c.Id" method="post" class="d-inline"
+                      onsubmit="return confirm('@confirmMsg')">
+                    <button type="submit" class="btn btn-sm btn-outline-danger">@L["Btn.Delete"]</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
